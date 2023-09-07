@@ -4,7 +4,7 @@ import { getPosts, baseUrl } from '@/services/posts';
 export default function usePosts() {
     const { data, error, mutate } = useSWR(baseUrl, getPosts);
     return {
-        posts: data,
+        data,
         isLoading: !error && !data,
         isError: error,
         mutate
