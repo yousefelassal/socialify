@@ -17,7 +17,7 @@ export async function POST(req: any){
         createdAt: new Date().toISOString(),
         comments: [],
         likes: 0,
-        user_name: req.body.user_name,
+        user_name: 'test_user',
     };
     postsArray.push(newPost);
     await fsPromises.writeFile(
