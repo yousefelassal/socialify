@@ -8,23 +8,24 @@ export async function GET(){
     return NextResponse.json(JSON.parse(posts));
 }
 
-export async function POST(req: any){
+export async function POST(req: Request){
     const posts = await fsPromises.readFile(path.join(process.cwd(), "mockdb", "posts.json"), "utf8");
     const postsArray = JSON.parse(posts);
+    const body:any = req.body;
     const newPost = {
         id: uuidv4(),
-        content: req.body.content,
+        content: body.content,
         createdAt: new Date().toISOString(),
         comments: [],
         likes: 0,
-        user_name: 'test_user',
+        user_name: body.user_name,
     };
     postsArray.push(newPost);
     await fsPromises.writeFile(
         path.join(process.cwd(), "mockdb", "posts.json"),
         JSON.stringify(postsArray)
     );
-    return NextResponse.next();
+    NextResponse.json({ success: true, data: newPost });
 }
 
 export async function PUT(req: any){
@@ -39,7 +40,6 @@ export async function PUT(req: any){
         path.join(process.cwd(), "mockdb", "posts.json"),
         JSON.stringify(postsArray)
     );
-    return NextResponse.next();
 }
 
 export async function DELETE(req: any){
@@ -51,5 +51,4 @@ export async function DELETE(req: any){
         path.join(process.cwd(), "mockdb", "posts.json"),
         JSON.stringify(postsArray)
     );
-    return NextResponse.next();
 }
