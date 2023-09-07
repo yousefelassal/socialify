@@ -1,9 +1,35 @@
+import { createPost } from "@/services/posts"
+import { PostsContext } from "@/context/postsContext"
+import { useContext } from "react"
+import { useState } from "react"
+
 export default function PostsForm() {
+  const [newPost, setNewPost] = useState("")
+  const { setPosts } = useContext(PostsContext)
+
+  const addPost = async (event: any) => {
+    event.preventDefault()
+    const postObject = {
+        content: newPost.trim(),
+        user_name: "test_user"
+    }
+    try {
+        await createPost(postObject)
+        setNewPost("")
+        setPosts((prevPosts: any) => [postObject, ...prevPosts])
+    } catch (error) {
+        console.error(error)
+    }
+  }
+
+  const handleContentChange = (event: any) => {
+    setNewPost(event.target.value)
+  }
+
   return (
     <form
         className="mx-auto w-fit p-12 mt-6 shadow-md rounded-xl border grid place-content-center"
-        action="/api/posts"
-        method="post"
+        onSubmit={addPost}
     >
         <h1>Create Post</h1>
         <div className="flex flex-col">
@@ -14,6 +40,8 @@ export default function PostsForm() {
                 name="content"
                 placeholder="What's on your mind?"
                 required
+                onChange={handleContentChange}
+                value={newPost}
             />
         </div>
         <button
