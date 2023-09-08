@@ -6,7 +6,7 @@ import GetLayout from '@/components/getLayout'
 
 const font = Poppins({
   subsets: ['latin'],
-  weight: ['400', '700'],
+  weight: ['400', '500', '700'],
 })
 
 export const metadata: Metadata = {
