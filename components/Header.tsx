@@ -53,14 +53,16 @@ export default function Header() {
             </div>
         </div>
         <div className="flex gap-2">
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-2">
                 <div className="rounded-full w-8 h-8 relative overflow-hidden">
+                    {user.profile_pic && (
                     <Image
                         src={user.profile_pic}
                         alt="Profile Picture"
                         fill
                         className="object-cover"
                     />
+                    )}
                 </div>
                 <span className="font-medium">
                     {user.name}
