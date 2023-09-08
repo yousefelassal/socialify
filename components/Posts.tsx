@@ -4,6 +4,7 @@ import usePosts from '@/hooks/use-posts';
 import PostsForm from '@/components/PostsForm';
 import { login } from '@/services/login';
 import { setToken } from '@/services/posts';
+import { Post } from '@/types/Post';
 
 import { PostsContext } from '@/context/postsContext';
 import { useState, useEffect } from 'react';
@@ -14,7 +15,7 @@ export default function Posts() {
     const [password, setPassword] = useState("")
     const [user, setUser] = useState<any>(null)
     const { data, isError, isLoading } = usePosts();
-    const [posts, setPosts] = useState<any>(data || []);
+    const [posts, setPosts] = useState<Post[] | undefined | any>(data);
 
     useEffect(() => {
         const loggedUserJSON = window.localStorage.getItem("loggedUser")
@@ -62,7 +63,7 @@ export default function Posts() {
           </p>
             <h2>Posts</h2>
             <ul className="rounded-lg border shadow-sm p-8">
-            {data?.map((post) => (
+            {posts?.map((post: Post) => (
                 <li key={post.id}>{post.content}</li>
             ))}
             </ul>
