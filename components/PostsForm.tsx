@@ -6,20 +6,22 @@ import { useState } from "react"
 export default function PostsForm() {
   const [newPost, setNewPost] = useState("")
   const { setPosts } = useContext(PostsContext)
+  const { posts } = useContext(PostsContext)
 
-  const addPost = async (event: any) => {
+const addPost = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    const postObject = {
+    const postObject: { content: string } = {
         content: newPost.trim(),
     }
     try {
         await createPost(postObject)
         setNewPost("")
-        setPosts((prevPosts: any) => [postObject, ...prevPosts])
+        const newArray: { content: string }[] = [postObject, ...posts]
+        setPosts(newArray)
     } catch (error) {
         console.error(error)
     }
-  }
+}
 
   const handleContentChange = (event: any) => {
     setNewPost(event.target.value)
