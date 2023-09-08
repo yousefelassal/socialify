@@ -1,12 +1,14 @@
 import { createPost } from "@/services/posts"
 import { PostsContext } from "@/context/postsContext"
-import { useContext } from "react"
-import { useState } from "react"
+import { UserContext } from "@/context/userContext"
+
+import { useState, useContext } from "react"
 
 export default function PostsForm() {
   const [newPost, setNewPost] = useState("")
   const { setPosts } = useContext(PostsContext)
   const { posts } = useContext(PostsContext)
+  const { user } = useContext<any>(UserContext)
 
 const addPost = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -16,7 +18,17 @@ const addPost = async (event: React.FormEvent<HTMLFormElement>) => {
     try {
         await createPost(postObject)
         setNewPost("")
-        const newArray: { content: string }[] = [postObject, ...posts]
+        const newPost = {
+            content: postObject.content,
+            likes: 0,
+            createdAt: new Date().toISOString(),
+            user: {
+                username: user.username,
+                name: user.name,
+                profile_pic: user.profile_pic,
+            },
+        }
+        const newArray: { content: string }[] = [newPost, ...posts]
         setPosts(newArray)
     } catch (error) {
         console.error(error)
