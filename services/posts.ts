@@ -2,7 +2,13 @@ import axios from 'axios'
 
 import { Post } from '@/types/Post'
 
-export const baseUrl = `${process.env.BASE_URL}/posts`
+export const baseUrl = `http://localhost:3001/posts`
+
+let token:any = null
+
+export const setToken = (newToken: string) => {
+    token = `Bearer ${newToken}`
+}
 
 export const getPosts = async (): Promise<Post[]>=> {
     const response = await axios.get(baseUrl)
@@ -15,7 +21,12 @@ export const getPost = async (id: string) => {
 }
 
 export const createPost = async (data: any) => {
-    const response = await axios.post(baseUrl, data)
+    console.log(token)
+    const config = {
+        headers: { Authorization: token },
+    }
+
+    const response = await axios.post(baseUrl, data, config)
     return response.data
 }
 
