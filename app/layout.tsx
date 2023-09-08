@@ -2,6 +2,8 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
 
+import GetLayout from '@/components/getLayout'
+
 const font = Poppins({
   subsets: ['latin'],
   weight: ['400', '700'],
@@ -19,7 +21,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={font.className}>{children}</body>
+      <body className={font.className}>
+        <GetLayout>
+          {children}
+        </GetLayout>
+        </body>
     </html>
   )
 }
