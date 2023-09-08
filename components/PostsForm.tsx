@@ -11,7 +11,6 @@ export default function PostsForm() {
     event.preventDefault()
     const postObject = {
         content: newPost.trim(),
-        user_name: "test_user"
     }
     try {
         await createPost(postObject)
