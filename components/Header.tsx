@@ -1,5 +1,9 @@
+import { useContext } from "react"
+import { UserContext } from "@/context/userContext"
+import Image from "next/image"
 
 export default function Header() {
+  const { user, handleLogout } = useContext<any>(UserContext)
   const headerMenu = [
     {
       name: 'Home',
@@ -48,8 +52,17 @@ export default function Header() {
         </div>
         <div className="flex gap-2">
             <div className="flex items-center gap-1">
+                <div className="rounded-full w-8 h-8 relative overflow-hidden">
+                    <Image
+                        src={user.profile_pic}
+                        alt="Profile Picture"
+                        fill
+                        className="object-cover"
+                        decoding="auto"
+                    />
+                </div>
                 <span>
-                    Profile
+                    {user.name}
                 </span>
             </div>
         </div>
