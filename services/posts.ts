@@ -2,7 +2,7 @@ import axios from 'axios'
 
 import { Post } from '@/types/Post'
 
-export const baseUrl = 'http://localhost:3000/api/posts'
+export const baseUrl = `${process.env.BASE_URL}/posts`
 
 export const getPosts = async (): Promise<Post[]>=> {
     const response = await axios.get(baseUrl)
