@@ -1,6 +1,12 @@
 import { useContext } from "react"
+import { BsChevronDown } from "react-icons/bs"
+
 import { UserContext } from "@/context/userContext"
-import Image from "next/image"
+import {
+    Avatar,
+    AvatarFallback,
+    AvatarImage,
+} from "@/components/ui/avatar"
 
 export default function Header() {
   const { user, handleLogout } = useContext<any>(UserContext)
@@ -53,21 +59,18 @@ export default function Header() {
             </div>
         </div>
         <div className="flex gap-2">
-            <div className="flex items-center gap-2">
-                <div className="rounded-full w-8 h-8 relative overflow-hidden">
-                    {user.profile_pic && (
-                    <Image
-                        src={user.profile_pic}
-                        alt="Profile Picture"
-                        fill
-                        className="object-cover"
-                    />
-                    )}
+            <button className="flex items-center gap-2 rounded-full hover:bg-blue-50 p-2">
+                <div className="rounded-full w-8 h-8 grid place-content-center relative overflow-hidden">
+                    <Avatar>
+                        <AvatarFallback>{user.name.charAt(0)}</AvatarFallback>
+                        <AvatarImage src={user.profile_pic} alt={user.name} />
+                    </Avatar>
                 </div>
-                <span className="font-medium">
+                <span className="font-medium text-sm">
                     {user.name}
                 </span>
-            </div>
+                <BsChevronDown className="text-blue-950 text-xs ml-1" />
+            </button>
         </div>
     </div>
   )
