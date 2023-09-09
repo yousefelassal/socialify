@@ -1,6 +1,6 @@
 'use client'
 
-import { signup } from "@/services/signup"
+import { createUser } from "@/services/user"
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
@@ -15,7 +15,7 @@ export default function SignUpForm() {
     event.preventDefault()
 
     try {
-        await signup({
+        await createUser({
             username,
             password,
             name,
