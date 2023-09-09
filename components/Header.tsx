@@ -1,6 +1,7 @@
 import { useContext } from "react"
 import { UserContext } from "@/context/userContext"
 import ProfileDropdown from "./ProfileDropdown"
+import { Home, MessageCircle, Bell, Search, Users } from "lucide-react"
 
 export default function Header() {
   const { user, handleLogout } = useContext<any>(UserContext)
@@ -8,18 +9,22 @@ export default function Header() {
     {
       name: 'Home',
       href: '/',
+      icon: <Home className="h-5 w-5 text-blue-500" />
     },
     {
       name: 'Connections',
       href: '/connections',
+      icon: <Users className="h-5 w-5 text-blue-500" />
     },
     {
       name: 'Messages',
       href: '/messages',
+      icon: <MessageCircle className="h-5 w-5 text-blue-500" />
     },
     {
       name: 'Notifications',
       href: '/notifications',
+      icon: <Bell className="h-5 w-5 text-blue-500" />
     }
   ]
   return (
@@ -40,11 +45,15 @@ export default function Header() {
                     </clipPath>
                     </defs>
                 </svg>
-                <input className="bg-transparent border rounded-full px-4 py-1 border-blue-500/50 focus:outline-none focus:border-blue-500/80" placeholder="Search" />
+                <div className="relative flex items-center gap-2">
+                    <input className="bg-transparent border rounded-full px-4 py-1 border-blue-500/50 focus:outline-none focus:border-blue-500/80" placeholder="Search" />
+                    <Search className="absolute top-1/2 transform -translate-y-1/2 right-4 text-blue-500 h-5 w-5" />
+                </div>
             </div>
-            <div className="flex gap-3">
+            <div className="flex gap-6">
                 {headerMenu.map((item, index) => (
-                    <div key={index} className="flex items-center gap-1">
+                    <div key={index} className="flex items-center gap-2">
+                        {item.icon}
                         <span className="text-sm">
                             {item.name}
                         </span>
