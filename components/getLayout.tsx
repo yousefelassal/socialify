@@ -48,6 +48,19 @@ export default function GetLayout({ children }: { children: React.ReactNode }) {
         window.localStorage.removeItem("loggedUser")
         setUser(null)
     }
+
+    //TODO: Add logout shortcut
+    // useEffect(() => {
+    //     const logout = (e:KeyboardEvent) => {
+    //       if (e.key === 'q' && (e.metaKey || e.ctrlKey)) {
+    //         e.preventDefault()
+    //         handleLogout()
+    //       }
+    //       document.addEventListener('keydown', logout)
+    //       return () => document.removeEventListener('keydown', logout)
+    //     }
+    // }, [])
+
     if(pathname === '/signup') return <>{children}</>
     return (
         <>
