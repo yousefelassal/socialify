@@ -13,6 +13,7 @@ import {
     User,
     UserPlus,
     Users,
+    ChevronDown
 } from "lucide-react"
    
   import { Button } from "@/components/ui/button"
@@ -35,7 +36,6 @@ import {
     AvatarFallback,
     AvatarImage,
 } from "@/components/ui/avatar"
-import { BsChevronDown } from "react-icons/bs"
 
 export default function ProfileDropdown({user, handleLogout}: {user: any, handleLogout: any}) {
   return (
@@ -53,7 +53,7 @@ export default function ProfileDropdown({user, handleLogout}: {user: any, handle
                 <span className="font-medium text-sm">
                     {user.name}
                 </span>
-                <BsChevronDown className="text-blue-950 text-xs ml-1" />
+                <ChevronDown className="text-blue-950 h-4 w-4" />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
