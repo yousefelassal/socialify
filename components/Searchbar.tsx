@@ -49,6 +49,7 @@ export default function Searchbar() {
             ))}
         </CommandGroup>
         <CommandSeparator />
+        {/* TODO: only show if search input is more than 2 chars */}
         <button className="font-medium text-left w-[calc(100%-12px)] text-sm m-2 p-2 hover:bg-blue-50 rounded-sm">
             See all results for <span className="text-blue-500">[query]</span>
         </button>
