@@ -2,6 +2,12 @@ import { createPost } from "@/services/posts"
 import { PostsContext } from "@/context/postsContext"
 import { UserContext } from "@/context/userContext"
 
+import {
+    Avatar,
+    AvatarFallback,
+    AvatarImage,
+} from "@/components/ui/avatar"
+
 import { useState, useContext } from "react"
 
 export default function PostsForm() {
@@ -41,14 +47,19 @@ const addPost = async (event: React.FormEvent<HTMLFormElement>) => {
 
   return (
     <form
-        className="mx-auto w-fit p-12 mt-6 shadow-md rounded-xl border grid place-content-center"
+        className="flex flex-col rounded-lg border p-6 w-full"
         onSubmit={addPost}
     >
-        <h1>Create Post</h1>
-        <div className="flex flex-col">
-            <label htmlFor="content">Content</label>
+        <div className="flex gap-2">
+            <Avatar>
+                <AvatarFallback>{user.name.charAt(0)}</AvatarFallback>
+                <AvatarImage src={user.profile_pic} alt={user.name} />
+            </Avatar>
+            <h1>{user.name}</h1>
+        </div>
+        <div className="flex gap-2 w-full">
             <textarea
-                className="border rounded-lg p-2"
+                className="border rounded-lg p-2 w-full"
                 id="content"
                 name="content"
                 placeholder="What's on your mind?"
@@ -58,7 +69,7 @@ const addPost = async (event: React.FormEvent<HTMLFormElement>) => {
             />
         </div>
         <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
             type="submit"
         >
             Submit
