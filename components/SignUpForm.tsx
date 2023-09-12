@@ -8,6 +8,9 @@ import Image from "next/image"
 import Link from "next/link"
 
 export default function SignUpForm() {
+  // TODO: add zod schemas
+  // TODO: add form validation
+  // TODO: use react forms
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [name, setName] = useState("")
