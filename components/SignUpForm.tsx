@@ -91,7 +91,7 @@ export default function SignUpForm() {
                 type="text"
                 id="FullName"
                 name="full_name"
-                className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                className="mt-1 w-full rounded-md border border-gray-200 p-3 bg-white text-sm text-gray-700 shadow-sm"
                 required
                 onChange={({ target }) => setName(target.value)}
                 value={name}
@@ -110,7 +110,7 @@ export default function SignUpForm() {
                 type="text"
                 id="Username"
                 name="username"
-                className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                className="mt-1 w-full rounded-md border-gray-200 border p-3 bg-white text-sm text-gray-700 shadow-sm"
                 required
                 onChange={({ target }) => setUsername(target.value)}
                 value={username}
@@ -129,7 +129,7 @@ export default function SignUpForm() {
                 type="password"
                 id="Password"
                 name="password"
-                className="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
+                className="mt-1 w-full rounded-md border-gray-200 focus:border-blue-500 p-3 border bg-white text-sm text-gray-700 shadow-sm"
                 required
                 onChange={({ target }) => setPassword(target.value)}
                 value={password}
