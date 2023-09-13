@@ -30,7 +30,7 @@ export default function Header() {
     }
   ]
   return (
-    <div className="flex justify-between items-center fixed bg-white/80 top-0 inset-x-0 py-4 pb-2 px-12 backdrop-blur-sm">
+    <div className="flex justify-between items-center fixed bg-white/80 top-0 inset-x-0 py-4 pb-2 px-12 backdrop-blur-sm z-50">
         <div className="flex items-center gap-8">
             <div className="flex gap-2 items-center relative">
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 130 130" fill="none">
