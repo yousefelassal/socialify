@@ -17,12 +17,8 @@ export default function Posts() {
     if (isLoading) return "Loading...";
     return (
       <PostsContext.Provider value={{ posts, setPosts }}>
-        <div className="flex flex-col">
-          <p>
-            Welcome {user.name}! ({user.username})
-          </p>
+        <div className="flex gap-10 flex-col">
           <PostsForm />
-          <h2>Posts</h2>
           <ul className="rounded-lg border shadow-sm p-8">
           {posts?.map((post: Post) => (
               <li key={post.id}>{post.content}</li>
