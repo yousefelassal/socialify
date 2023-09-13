@@ -47,19 +47,16 @@ const addPost = async (event: React.FormEvent<HTMLFormElement>) => {
 
   return (
     <form
-        className="flex flex-col rounded-lg border p-6 w-full"
+        className="flex flex-col gap-2 bg-white/80 shadow-sm rounded-lg p-4 w-full"
         onSubmit={addPost}
     >
-        <div className="flex gap-2">
+        <div className="flex items-center gap-2">
             <Avatar>
                 <AvatarFallback>{user.name.charAt(0)}</AvatarFallback>
                 <AvatarImage src={user.profile_pic} alt={user.name} />
             </Avatar>
-            <h1>{user.name}</h1>
-        </div>
-        <div className="flex gap-2 w-full">
             <textarea
-                className="border rounded-lg p-2 w-full"
+                className=" bg-gray-100/60 rounded-lg p-2 w-full"
                 id="content"
                 name="content"
                 placeholder="What's on your mind?"
@@ -68,11 +65,12 @@ const addPost = async (event: React.FormEvent<HTMLFormElement>) => {
                 value={newPost}
             />
         </div>
+        
         <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
             type="submit"
         >
-            Submit
+            Post
         </button>
     </form>
   )
