@@ -79,6 +79,22 @@ export default function GetLayout({ children }: { children: React.ReactNode }) {
                         <div className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#3555FF] to-[#3C8EEE] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style={{clipPath: "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"}}></div>
                     </div>
                     <div className="mx-auto max-w-lg">
+                        <div className="flex flex-col gap-2 justify-center items-center">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 130 130" fill="none">
+                            <g clipPath="url(#clip0_17_11)">
+                                <path d="M68.8518 13.7223V65.4815L57.0556 58.7407C36.1111 46.7037 23.1111 24.3148 23.1111 0H14.4445V59.2222C14.4445 78.4815 25.5185 96.2963 43.0926 104.722L69.0926 117.241V65.4815L80.8889 72.2222C101.833 84.2593 114.833 106.648 114.833 130.963H123.5V71.7407C123.5 52.4815 112.426 34.6667 94.8519 26.2407L68.8518 13.7223Z" fill="url(#paint0_linear_17_11)"/>
+                            </g>
+                            <defs>
+                            <linearGradient id="paint0_linear_17_11" x1="37.3148" y1="18.0556" x2="121.574" y2="109.537" gradientUnits="userSpaceOnUse">
+                                <stop stopColor="#3555FF"/>
+                                <stop offset="1" stop-color="#3C8EEE"/>
+                            </linearGradient>
+                            <clipPath id="clip0_17_11">
+                                <rect width="130" height="130" fill="white"/>
+                            </clipPath>
+                            </defs>
+                        </svg>
                         <h1 className="text-center text-2xl font-bold sm:text-3xl">
                             Join Socialify Today
                         </h1>
@@ -88,6 +104,7 @@ export default function GetLayout({ children }: { children: React.ReactNode }) {
                             dolores deleniti inventore quaerat mollitia?
                         </p>
 
+                    </div>
                         <form
                             className="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8"
                             onSubmit={handleLogin}
