@@ -5,6 +5,7 @@ import PostsForm from '@/components/PostsForm';
 import { Post } from '@/types/Post';
 import { PostsContext } from '@/context/postsContext';
 import { UserContext } from '@/context/userContext';
+import PostContainer from './PostContainer';
 
 import { useState, useContext } from 'react';
 
@@ -19,11 +20,9 @@ export default function Posts() {
       <PostsContext.Provider value={{ posts, setPosts }}>
         <div className="flex gap-10 flex-col">
           <PostsForm />
-          <ul className="rounded-lg border shadow-sm p-8">
           {posts?.map((post: Post) => (
-              <li key={post.id}>{post.content}</li>
+              <PostContainer key={post.id} post={post} />
           ))}
-          </ul>
         </div>
       </PostsContext.Provider>
     )
