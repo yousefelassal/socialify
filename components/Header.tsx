@@ -40,7 +40,7 @@ export default function Header() {
                     <defs>
                     <linearGradient id="paint0_linear_17_11" x1="37.3148" y1="18.0556" x2="121.574" y2="109.537" gradientUnits="userSpaceOnUse">
                         <stop stopColor="#3555FF"/>
-                        <stop offset="1" stop-color="#3C8EEE"/>
+                        <stop offset="1" stopColor="#3C8EEE"/>
                     </linearGradient>
                     <clipPath id="clip0_17_11">
                         <rect width="130" height="130" fill="white"/>
