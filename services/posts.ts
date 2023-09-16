@@ -20,6 +20,16 @@ export const getPost = async (id: string) => {
     return response.data
 }
 
+export const likePost = async (id: string) => {
+    const response = await axios.post(`${baseUrl}/${id}/like`)
+    return response.data
+}
+
+export const unlikePost = async (id: string) => {
+    const response = await axios.post(`${baseUrl}/${id}/unlike`)
+    return response.data
+}
+
 export const createPost = async (data: any) => {
     console.log(token)
     const config = {
