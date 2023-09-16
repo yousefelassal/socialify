@@ -7,5 +7,6 @@ export type Post = {
     createdAt: string;
     comments: Comment[];
     likes: number;
+    liked_by: User[];
     user: User;
 };
