@@ -1,4 +1,14 @@
+'use client'
+
+import { useState, useContext, useEffect } from 'react';
+
 import { Post } from '@/types/Post';
+import { likePost } from '@/services/posts';
+import { unlikePost } from '@/services/posts';
+import { UserContext } from "@/context/userContext"
+
+import { AiFillHeart } from 'react-icons/ai'
+
 import {
   Avatar,
   AvatarFallback,
@@ -6,6 +16,40 @@ import {
 } from "@/components/ui/avatar"
 
 export default function PostContainer({post}: {post: Post}) {
+  const [liked, setLiked] = useState(false)
+  const [likes, setLikes] = useState(post.likes)
+  const { user } = useContext<any>(UserContext)
+
+
+  useEffect(() => {
+    // TODO: Check if user has liked the post
+    () => {
+      if (post.likes > 0) {
+        post.liked_by.map((likedUser) => {
+          if (likedUser.id === user.id) {
+            setLiked(true)
+          }
+        })
+      }
+    }
+  }, [])
+
+
+  const handleLike = async () => {
+    try {
+      await likePost(post.id)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  const handleUnlike = async () => {
+    try {
+      await unlikePost(post.id)
+    } catch (error) {
+      console.error(error)
+    }
+  }
   return (
     <div className="p-4 flex flex-col gap-4 bg-white/80 shadow-sm rounded-lg">
       <div className="flex gap-2 items-center">
@@ -27,9 +71,33 @@ export default function PostContainer({post}: {post: Post}) {
       <div className="flex">
         {post.content}
       </div>
-      <div className="flex gap-4">
+      <div className="flex gap-4 items-center">
         <div>
-          {post.likes}
+          {liked ? (
+            <button
+              className="flex gap-1 items-center"
+              onClick={() => {
+                setLiked(false)
+                setLikes(likes - 1)
+                handleUnlike()
+              }}
+            >
+              <AiFillHeart className="text-red-500 h-6 w-6 transition-colors" />
+              <span>{likes}</span>
+            </button>
+          ) : (
+            <button
+              className="flex gap-1 items-center group"
+              onClick={() => {
+                setLiked(true)
+                setLikes(likes + 1)
+                handleLike()
+              }}
+            >
+              <AiFillHeart className="text-gray-400 group-hover:text-red-400 h-6 w-6 transition-colors" />
+              <span>{likes}</span>
+            </button>
+          )}
         </div>
         <div>
           {post.comments ? post.comments.length : 0}
