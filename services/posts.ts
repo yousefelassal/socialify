@@ -21,12 +21,18 @@ export const getPost = async (id: string) => {
 }
 
 export const likePost = async (id: string) => {
-    const response = await axios.post(`${baseUrl}/${id}/like`)
+    const config = {
+        headers: { Authorization: token },
+    }
+    const response = await axios.post(`${baseUrl}/${id}/like`, {}, config)
     return response.data
 }
 
 export const unlikePost = async (id: string) => {
-    const response = await axios.post(`${baseUrl}/${id}/unlike`)
+    const config = {
+        headers: { Authorization: token },
+    }
+    const response = await axios.post(`${baseUrl}/${id}/unlike`, {}, config)
     return response.data
 }
 
