@@ -25,14 +25,14 @@ export default function PostContainer({post}: {post: Post}) {
     // TODO: Check if user has liked the post
     () => {
       if (post.likes > 0) {
-        post.liked_by.map((likedUser) => {
-          if (likedUser.id === user.id) {
+        post.liked_by.forEach((LikedUser) => {
+          if (LikedUser.id === user.id) {
             setLiked(true)
           }
         })
       }
     }
-  }, [])
+  }, [post, user])
 
 
   const handleLike = async () => {
