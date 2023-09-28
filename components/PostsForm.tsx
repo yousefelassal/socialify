@@ -36,6 +36,8 @@ const addPost = async (event: React.FormEvent<HTMLFormElement>) => {
         }
         const newArray: { content: string }[] = [newPost, ...posts]
         setPosts(newArray)
+
+        
     } catch (error) {
         console.error(error)
     }
@@ -56,13 +58,23 @@ const addPost = async (event: React.FormEvent<HTMLFormElement>) => {
                 <AvatarImage src={user.profile_pic} alt={user.name} />
             </Avatar>
             <textarea
-                className=" bg-gray-100/60 rounded-lg p-2 w-full focus:outline-none"
+                className=" bg-gray-100/60 rounded-lg p-2 w-full focus:outline-none resize-none" 
                 id="content"
                 name="content"
                 placeholder="What's on your mind?"
                 required
                 onChange={handleContentChange}
                 value={newPost}
+                onInput={(e) => {
+                    const textarea = e.target as HTMLTextAreaElement;
+                    textarea.style.height = "auto";
+                    textarea.style.height = textarea.scrollHeight + "px";
+
+                    if (textarea.scrollHeight > 200) {
+                        textarea.style.height = "200px";
+                        textarea.style.overflowY = "scroll";
+                    }
+                }}
             />
         </div>
         
