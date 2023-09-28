@@ -36,8 +36,10 @@ const addPost = async (event: React.FormEvent<HTMLFormElement>) => {
         }
         const newArray: { content: string }[] = [newPost, ...posts]
         setPosts(newArray)
-
         
+        const textarea = document.getElementById("content") as HTMLTextAreaElement;
+        textarea.style.height = "auto";
+        textarea.style.overflowY = "hidden";
     } catch (error) {
         console.error(error)
     }
