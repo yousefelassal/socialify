@@ -56,7 +56,7 @@ const addPost = async (event: React.FormEvent<HTMLFormElement>) => {
                 <AvatarImage src={user.profile_pic} alt={user.name} />
             </Avatar>
             <textarea
-                className=" bg-gray-100/60 rounded-lg p-2 w-full"
+                className=" bg-gray-100/60 rounded-lg p-2 w-full focus:outline-none"
                 id="content"
                 name="content"
                 placeholder="What's on your mind?"
