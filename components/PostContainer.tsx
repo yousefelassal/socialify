@@ -5,7 +5,9 @@ import { useState, useContext, useEffect } from 'react';
 import { Post } from '@/types/Post';
 import { likePost } from '@/services/posts';
 import { unlikePost } from '@/services/posts';
+import { deletePost } from '@/services/posts';
 import { UserContext } from "@/context/userContext"
+import { PostsContext } from "@/context/postsContext"
 
 import { AiFillHeart } from 'react-icons/ai'
 import { FiMoreVertical } from 'react-icons/fi'
@@ -31,6 +33,8 @@ export default function PostContainer({post}: {post: Post}) {
   const [liked, setLiked] = useState(false)
   const [likes, setLikes] = useState(post.likes)
   const { user } = useContext<any>(UserContext)
+  const { posts } = useContext(PostsContext)
+  const { setPosts } = useContext(PostsContext)
 
 
   useEffect(() => {
@@ -97,7 +101,13 @@ export default function PostContainer({post}: {post: Post}) {
                 </span>
               </DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={async () => {
+                  await deletePost(post.id)
+                  const newArray: { content: string }[] = posts.filter((Post:Post) => Post.id !== post.id)
+                  setPosts(newArray)
+                }}
+              >
                 <span className="flex gap-2 items-center">
                   <Trash2 className="h-4 w-4" />
                   <span className="text-red-500 font-semibold">Delete</span>
