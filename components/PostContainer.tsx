@@ -8,12 +8,24 @@ import { unlikePost } from '@/services/posts';
 import { UserContext } from "@/context/userContext"
 
 import { AiFillHeart } from 'react-icons/ai'
+import { FiMoreVertical } from 'react-icons/fi'
+import { Pencil } from 'lucide-react';
+import { Trash2 } from 'lucide-react';
 
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
 } from "@/components/ui/avatar"
+import { Button } from "@/components/ui/button"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 
 export default function PostContainer({post}: {post: Post}) {
   const [liked, setLiked] = useState(false)
@@ -52,20 +64,48 @@ export default function PostContainer({post}: {post: Post}) {
   }
   return (
     <div className="p-4 flex flex-col gap-4 bg-white/80 shadow-sm rounded-lg">
-      <div className="flex gap-2 items-center">
-        <div className="rounded-full w-10 h-10 grid place-content-center relative overflow-hidden">
-          <Avatar>
-              <AvatarFallback>{post.user.name.charAt(0)}</AvatarFallback>
-              <AvatarImage src={post.user.profile_pic} alt={post.user.name} />
-          </Avatar>
+      <div className="flex justify-between w-full items-center">
+        <div className="flex gap-2 items-center w-full">
+          <div className="rounded-full w-10 h-10 grid place-content-center relative overflow-hidden">
+            <Avatar>
+                <AvatarFallback>{post.user.name.charAt(0)}</AvatarFallback>
+                <AvatarImage src={post.user.profile_pic} alt={post.user.name} />
+            </Avatar>
+          </div>
+          <div className="flex flex-col">
+            <div className="font-medium">
+              {post.user.name}
+            </div>
+            <div className="font-light">
+              @{post.user.username}
+            </div>
+          </div>
         </div>
-        <div className="flex flex-col">
-          <div className="font-medium">
-            {post.user.name}
-          </div>
-          <div className="font-light">
-            @{post.user.username}
-          </div>
+        <div>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost">
+                <FiMoreVertical />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="max-w-fit">
+            <DropdownMenuGroup>
+              <DropdownMenuItem>
+                <span className="flex gap-2 items-center">
+                  <Pencil className="h-4 w-4" />
+                  <span>Edit</span>
+                </span>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>
+                <span className="flex gap-2 items-center">
+                  <Trash2 className="h-4 w-4" />
+                  <span className="text-red-500 font-semibold">Delete</span>
+                </span>
+              </DropdownMenuItem>
+            </DropdownMenuGroup>
+          </DropdownMenuContent>
+        </DropdownMenu>
         </div>
       </div>
       <div className="flex max-w-[50ch] break-words overflow-y-auto">
