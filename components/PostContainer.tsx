@@ -36,6 +36,7 @@ export default function PostContainer({post}: {post: Post}) {
   const { posts } = useContext(PostsContext)
   const { setPosts } = useContext(PostsContext)
 
+  const postByCurrentUser = post.user.id === user.id
 
   useEffect(() => {
     // TODO: Check if user has liked the post
@@ -86,36 +87,38 @@ export default function PostContainer({post}: {post: Post}) {
           </div>
         </div>
         <div>
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost">
-                <FiMoreVertical />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent className="max-w-fit">
-            <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <span className="flex gap-2 items-center">
-                  <Pencil className="h-4 w-4" />
-                  <span>Edit</span>
-                </span>
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem
-                onClick={async () => {
-                  await deletePost(post.id)
-                  const newArray: { content: string }[] = posts.filter((Post:Post) => Post.id !== post.id)
-                  setPosts(newArray)
-                }}
-              >
-                <span className="flex gap-2 items-center">
-                  <Trash2 className="h-4 w-4" />
-                  <span className="text-red-500 font-semibold">Delete</span>
-                </span>
-              </DropdownMenuItem>
-            </DropdownMenuGroup>
-          </DropdownMenuContent>
-        </DropdownMenu>
+          {postByCurrentUser && (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost">
+                    <FiMoreVertical />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="max-w-fit">
+                <DropdownMenuGroup>
+                  <DropdownMenuItem>
+                    <span className="flex gap-2 items-center">
+                      <Pencil className="h-4 w-4" />
+                      <span>Edit</span>
+                    </span>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem
+                    onClick={async () => {
+                      await deletePost(post.id)
+                      const newArray: { content: string }[] = posts.filter((Post:Post) => Post.id !== post.id)
+                      setPosts(newArray)
+                    }}
+                  >
+                    <span className="flex gap-2 items-center">
+                      <Trash2 className="h-4 w-4" />
+                      <span className="text-red-500 font-semibold">Delete</span>
+                    </span>
+                  </DropdownMenuItem>
+                </DropdownMenuGroup>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          )}
         </div>
       </div>
       <div className="flex max-w-[50ch] break-words overflow-y-auto">
