@@ -1,14 +1,16 @@
+'use client'
+
+import { useState } from 'react'
+
 import useUsers from "@/hooks/use-users"
    
   import {
     Command,
-    CommandEmpty,
     CommandGroup,
     CommandInput,
     CommandItem,
     CommandList,
     CommandSeparator,
-    CommandShortcut,
   } from "@/components/ui/command"
 
 import {
@@ -20,6 +22,7 @@ import { CommandLoading } from "cmdk"
 
 export default function Searchbar() {
   const { data, isLoading } = useUsers()
+  const [query, setQuery] = useState("")
 
   return (
     <Command className="w-60 command rounded-full py-0 border relative overflow-visible">
@@ -28,6 +31,7 @@ export default function Searchbar() {
         className="command-input py-0"
         onFocus={(e) => e.target.classList.add("active")}
         onBlur={(e) => e.target.classList.remove("active")}
+        onInput={(e) => setQuery((e.target as HTMLInputElement).value)}
       />
       <CommandList className="w-60 commandlist absolute top-12 bg-white shadow-md rounded-lg">
         {isLoading && <CommandLoading>Hang on...</CommandLoading>}
@@ -48,11 +52,15 @@ export default function Searchbar() {
                 </CommandItem>
             ))}
         </CommandGroup>
-        <CommandSeparator />
-        {/* TODO: only show if search input is more than 2 chars */}
-        <button className="font-medium text-left w-[calc(100%-12px)] text-sm m-2 p-2 hover:bg-blue-50 rounded-sm">
-            See all results for <span className="text-blue-500">[query]</span>
-        </button>
+        {
+          query.length > 2 && (
+            <>
+            <CommandSeparator />
+              <button className="font-medium text-left w-[calc(100%-12px)] text-sm m-2 p-2 hover:bg-blue-50 rounded-sm">
+                  See all results for <span className="text-blue-500">{query}</span>
+              </button>
+            </>
+        )}
       </CommandList>
     </Command>
   )
