@@ -115,7 +115,7 @@ export default function PostContainer({post}: {post: Post}) {
           )}
         </div>
       </div>
-      <div className="flex max-w-[50ch] break-words overflow-y-auto">
+      <div className="flex break-words overflow-y-auto">
         {post.content}
       </div>
       <div className="flex gap-4 items-center">
