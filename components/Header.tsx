@@ -1,34 +1,11 @@
 import { useContext } from "react"
 import { UserContext } from "@/context/userContext"
-import { Home, MessageCircle, Bell, Search, Users } from "lucide-react"
 
 import ProfileDropdown from "./ProfileDropdown"
 import Searchbar from "./Searchbar"
 
 export default function Header() {
   const { user, handleLogout } = useContext<any>(UserContext)
-  const headerMenu = [
-    {
-      name: 'Home',
-      href: '/',
-      icon: <Home className="h-5 w-5 text-blue-500" />
-    },
-    {
-      name: 'Connections',
-      href: '/connections',
-      icon: <Users className="h-5 w-5 text-blue-500" />
-    },
-    {
-      name: 'Messages',
-      href: '/messages',
-      icon: <MessageCircle className="h-5 w-5 text-blue-500" />
-    },
-    {
-      name: 'Notifications',
-      href: '/notifications',
-      icon: <Bell className="h-5 w-5 text-blue-500" />
-    }
-  ]
   return (
     <div className="flex justify-between items-center fixed bg-white/80 top-0 inset-x-0 py-4 pb-2 px-12 backdrop-blur-sm z-50">
         <div className="flex items-center gap-8">
@@ -48,16 +25,6 @@ export default function Header() {
                     </defs>
                 </svg>
                 <Searchbar />
-            </div>
-            <div className="flex gap-6">
-                {headerMenu.map((item, index) => (
-                    <div key={index} className="flex items-center gap-2">
-                        {item.icon}
-                        <span className="text-sm">
-                            {item.name}
-                        </span>
-                    </div>
-                ))}
             </div>
         </div>
         <div className="flex gap-2">
