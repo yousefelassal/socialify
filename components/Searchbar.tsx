@@ -22,14 +22,14 @@ export default function Searchbar() {
   const { data, isLoading } = useUsers()
 
   return (
-    <Command className="command rounded-full border w-60 border-blue-500/80 relative overflow-visible">
+    <Command className="w-60 command rounded-full py-0 border relative overflow-visible">
       <CommandInput
         placeholder="Search" 
-        className="command-input"
+        className="command-input py-0"
         onFocus={(e) => e.target.classList.add("active")}
         onBlur={(e) => e.target.classList.remove("active")}
       />
-      <CommandList className="commandlist absolute top-12 w-60 bg-white shadow-md rounded-lg">
+      <CommandList className="w-60 commandlist absolute top-12 bg-white shadow-md rounded-lg">
         {isLoading && <CommandLoading>Hang on...</CommandLoading>}
         <CommandGroup heading="Users" className="max-h-[250px] overflow-y-auto overflow-x-hidden">
             {data?.map((user:any, index:any) => (

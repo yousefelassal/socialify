@@ -97,6 +97,11 @@ body{
 
 .command:has(.command-container .command-input.active) .commandlist{
   display: block;
+  @apply w-72 transition-all duration-200;
+}
+
+.command:has(.command-container .command-input.active){
+  @apply w-72 transition-all duration-200 border-blue-500/80;
 }
 
 @keyframes fadeIn {
