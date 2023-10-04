@@ -37,14 +37,14 @@ export default function PostContainer({post}: {post: Post}) {
   const { setPosts } = useContext(PostsContext)
 
   const postByCurrentUser = post.user.id === user.id
-  const likedByCurrentUser = post.liked_by.includes(user.id)
+  // const likedByCurrentUser = post.liked_by.includes(user.id)
 
-  useEffect(() => {
-    //TODO: check if post is liked by current user
-    if (likedByCurrentUser) {
-      setLiked(true)
-    }
-  }, [likedByCurrentUser])
+  // useEffect(() => {
+  //   //TODO: check if post is liked by current user
+  //   if (likedByCurrentUser) {
+  //     setLiked(true)
+  //   }
+  // }, [likedByCurrentUser])
 
   const handleLike = async () => {
     try {
